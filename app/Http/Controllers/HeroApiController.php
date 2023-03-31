@@ -30,13 +30,13 @@ class HeroApiController extends Controller
     public function create(Request $request)
     {
         $data = $request->all();
-        $movie = $this->_service->create($data);
+        $hero = $this->_service->create($data);
         
         if ($this->_service->hasErrors()) {
             return ["errors" => $this->_service->getErrors()];
         }
         
-        return ["data" => $movie];
+        return ["data" => $hero];
     }
 
 }

@@ -27,7 +27,7 @@ class HeroService extends Service
 
     public function all($pages = 10)
     {
-        return $this->_model->paginate($pages);
+        return $this->_model;
     }
 
     public function find($id)

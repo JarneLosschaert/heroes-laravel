@@ -9,6 +9,8 @@ class Hero extends Model
 {
     use HasFactory;
 
+    protected $table = 'heroes';
+
     protected $fillable = [
         'name',
         'description',

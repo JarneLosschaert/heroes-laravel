@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HeroApiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/heroes', [HeroApiController::class, 'all']);
+Route::get('/heroes/{id}', [HeroApiController::class, 'find']);
+
+Route::post('/heroes', [HeroApiController::class, 'create']);

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HeroApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,8 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/heroes', [MovieApiController::class, 'all']);
-Route::get('/heroes/{id}', [MovieApiController::class, 'find']);
+Route::get('/heroes', [HeroApiController::class, 'all']);
+Route::get('/heroes/{id}', [HeroApiController::class, 'find']);
 
-Route::post('/movies', [MovieApiController::class, 'create']);
+Route::post('/heroes', [HeroApiController::class, 'create']);
 
