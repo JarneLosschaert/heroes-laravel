@@ -12,8 +12,8 @@ class HeroService extends Service
         "id" => "required",
         "name" => "required",
         "description" => "required",
-        "power_level" => "required|min:1|max:10",
-        "skills" => "required",
+        "power-level" => "required|min:1|max:10",
+        "skills" => "",
         "birthday" => "",
         "race" => "",
         "gender" => "",
@@ -27,7 +27,7 @@ class HeroService extends Service
 
     public function all($pages = 10)
     {
-        return $this->_model;
+        return $this->_model->paginate($pages);
     }
 
     public function find($id)

@@ -31,6 +31,8 @@ class HeroApiController extends Controller
     {
         $data = $request->all();
         $hero = $this->_service->create($data);
+        $hero->dis=$request->dis;
+
         
         if ($this->_service->hasErrors()) {
             return ["errors" => $this->_service->getErrors()];

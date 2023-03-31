@@ -9,12 +9,12 @@ class Hero extends Model
 {
     use HasFactory;
 
-    protected $table = 'heroes';
+    protected $table = 'table_heroes';
 
     protected $fillable = [
         'name',
         'description',
-        'power_level',
+        'power-level',
         'skills',
         'birthday',
         'race',
