@@ -9,7 +9,7 @@ use Illuminate\Support\MessageBag;
 class HeroService extends Service
 {
     protected $_rules = [
-        "id" => "required",
+        "id" => "",
         "name" => "required",
         "description" => "required",
         "power-level" => "required|min:1|max:10",
@@ -54,5 +54,11 @@ class HeroService extends Service
         $hero = $this->_model->find($id);
         $hero = $hero->update($data);
         return $hero;
+    }
+
+    public function delete($id)
+    {
+        $hero = $this->_model->find($id);
+        $hero->delete();
     }
 }

@@ -41,4 +41,23 @@ class HeroApiController extends Controller
         return ["data" => $hero];
     }
 
+    public function update(Request $request, $id)
+    {
+        $data = $request->all();
+        $hero = $this->_service->update($id, $data);
+        if ($this->_service->hasErrors()) {
+            return ["errors" => $this->_service->getErrors()];
+        }
+        return ["data" => $hero];
+    }
+
+    public function delete($id)
+    {
+        $this->_service->delete($id);
+        if ($this->_service->hasErrors()) {
+            return ["errors" => $this->_service->getErrors()];
+        }
+        return ["data" => "Hero deleted"];
+    }
+
 }

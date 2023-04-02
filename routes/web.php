@@ -22,3 +22,6 @@ Route::get('/heroes', [HeroApiController::class, 'all']);
 Route::get('/heroes/{id}', [HeroApiController::class, 'find']);
 
 Route::post('/heroes', [HeroApiController::class, 'create']);
+Route::put('/heroes/{id}', [HeroApiController::class, 'update']);
+Route::delete('/heroes/{id}', [HeroApiController::class, 'delete']);
+
