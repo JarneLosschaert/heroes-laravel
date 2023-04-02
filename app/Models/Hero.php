@@ -25,3 +25,4 @@ class Hero extends Model
         'skills' => 'array'
     ];
 }
+
