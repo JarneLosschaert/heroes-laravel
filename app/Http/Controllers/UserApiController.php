@@ -48,5 +48,5 @@ class UserApiController extends Controller
         return ["data" => $user];
     }
 
-    // patch moet nog
+    // patch moet nog denk ik update doet dat mss all
 }
