@@ -17,8 +17,14 @@ class HeroApiController extends Controller
 
     public function all(Request $request)
     {
+        $locale = App::getLocale();
+        $language = $request->input("lang", $locale);
+        if ($language != $locale)
+            App::setLocale($language);
+
         $pages = $request->get("pages", 10);
-        return $this->_service->all($pages);
+        return $this->_service->all($pages, $language);
+        //Weet niet of dit werkt met de pages
     }
 
     public function find($id)
