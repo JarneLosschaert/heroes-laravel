@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Modules\Users\Services\UserService;
 
 class UserApiController extends Controller
 {
-    private $_service;
+    private $_service;  
 
     public function __construct(UserService $service)
     {
@@ -15,7 +16,8 @@ class UserApiController extends Controller
 
     public function all(Request $request){  
         
-        return $this->_service->all;
+        $pages = $request->get("pages", 10);
+        return $this->_service->all($pages);
     }
 
     public function find($id)
@@ -28,13 +30,9 @@ class UserApiController extends Controller
     {
         $data = $request->all();
         $user = $this->_service->create($data);
-        $user->dis=$request->dis;
-
-        
         if ($this->_service->hasErrors()) {
             return ["errors" => $this->_service->getErrors()];
         }
-        
         return ["data" => $user];
     }
 
@@ -48,5 +46,12 @@ class UserApiController extends Controller
         return ["data" => $user];
     }
 
-    // patch moet nog denk ik update doet dat mss all
+    public function delete($id)
+    {
+        $user = $this->_service->delete($id);
+        if ($this->_service->hasErrors()) {
+            return ["errors" => $this->_service->getErrors()];
+        }
+        return ["data" => $user];
+    }
 }

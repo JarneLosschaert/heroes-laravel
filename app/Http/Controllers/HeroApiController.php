@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Hero;
 use App\Modules\Heroes\Services\HeroService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class HeroApiController extends Controller
 {
@@ -17,13 +17,13 @@ class HeroApiController extends Controller
 
     public function all(Request $request)
     {
-        $locale = App::getLocale();
-        $language = $request->input("lang", $locale);
-        if ($language != $locale)
-            App::setLocale($language);
+        // $locale = App::getLocale();
+        // $language = $request->input("lang", $locale);
+        // if ($language != $locale)
+        //     App::setLocale($language);
 
         $pages = $request->get("pages", 10);
-        return $this->_service->all($pages, $language);
+        return $this->_service->all($pages);
         //Weet niet of dit werkt met de pages
     }
 
