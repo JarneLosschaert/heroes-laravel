@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Modules\Heroes\Services\HeroService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Log;
 
 class HeroApiController extends Controller
 {
@@ -17,14 +18,17 @@ class HeroApiController extends Controller
 
     public function all(Request $request)
     {
-        // $locale = App::getLocale();
-        // $language = $request->input("lang", $locale);
-        // if ($language != $locale)
-        //     App::setLocale($language);
-
         $pages = $request->get("pages", 10);
+
         return $this->_service->all($pages);
-        //Weet niet of dit werkt met de pages
+    }
+
+    public function list(Request $request){
+        
+        $pages = $request->get("pages", 10);
+        $language = $request->get("language", app()->getLocale());
+    
+        return $this->_service->list($language, $pages);
     }
 
     public function find($id)
@@ -37,8 +41,6 @@ class HeroApiController extends Controller
     {
         $data = $request->all();
         $hero = $this->_service->create($data);
-        $hero->dis=$request->dis;
-
         
         if ($this->_service->hasErrors()) {
             return ["errors" => $this->_service->getErrors()];
@@ -65,5 +67,4 @@ class HeroApiController extends Controller
         }
         return ["data" => "Hero deleted"];
     }
-
 }

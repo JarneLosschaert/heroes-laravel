@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HeroApiController;
 use App\Http\Controllers\UserApiController;
+use Illuminate\Routing\RouteAction;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,10 +21,12 @@ Route::get('/', function () {
 });
 
 Route::get('/heroes', [HeroApiController::class, 'all']);
+Route::get('/heroes/list', [HeroApiController::class, 'list']);
 Route::get('/heroes/{id}', [HeroApiController::class, 'find']);
 Route::post('/heroes', [HeroApiController::class, 'create']);
 Route::put('/heroes/{id}', [HeroApiController::class, 'update']);
 Route::delete('/heroes/{id}', [HeroApiController::class, 'delete']);
+
 
 Route::get('/users', [UserApiController::class, 'all']);
 Route::get('/users/{id}', [UserApiController::class, 'find']);

@@ -9,8 +9,6 @@ class Hero extends Model
 {
     use HasFactory;
 
-    protected $table = 'table_heroes';
-
     protected $fillable = [
         'name',
         'description',
@@ -24,5 +22,18 @@ class Hero extends Model
     protected $casts = [
         'skills' => 'array'
     ];
+
+    public function translations(){
+        return $this->hasMany(HeroLanguage::class, "hero_id", "id");
+    }
 }
 
+class HeroLanguage extends Model
+{
+    use HasFactory;
+    protected $table = "heroes_language";
+
+    public function country() {
+        return $this->belongsTo(Hero::class, "hero_id", "id");
+    }
+}

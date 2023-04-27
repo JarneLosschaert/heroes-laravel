@@ -3,10 +3,11 @@ namespace App\Modules\Heroes\Services;
 
 use App\Models\Hero;
 use App\Modules\Core\Services\Service;
+use App\Modules\Core\Services\ServiceLanguages;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\MessageBag;
 
-class HeroService extends Service
+class HeroService extends ServiceLanguages
 {
     protected $_rules = [
         "id" => "",
@@ -20,6 +21,10 @@ class HeroService extends Service
         "image" => ""
     ];
 
+    protected $_rulesTranslations = [
+        "language" => "required|string|min:2|max:2"
+    ];
+
     public function __construct(Hero $model)
     {
         parent::__construct($model);
@@ -27,12 +32,36 @@ class HeroService extends Service
 
     public function all($pages = 10)
     {
-        return $this->_model->paginate($pages);
+        $data = $this->_model
+            ->with("translations")
+            ->paginate($pages);
+        
+        return $this->presentAllWithTranslations($data->toArray());
+    }
+
+    public function list($language, $pages = 10)
+    {
+        $data =  $this->_model->with(
+            ["translations" => function ($query) use ($language) {
+                if ($language)
+                    return $query->where("language", $language);
+            }]
+        )
+            ->paginate($pages)
+            ->withQueryString();
+        $data = $this->presentListWithTranslations($data->toArray());
+        return $data;
     }
 
     public function find($id)
     {
-        return ["data" => $this->_model->find($id)];
+        $data = $this->_model
+            ->with("translations")
+            ->find($id);
+
+        $data = $this->presentFindWithTranslations($data->toArray());
+
+        return ["data" => $data];
     }
 
     public function create($data)
