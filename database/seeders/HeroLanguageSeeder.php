@@ -2,16 +2,18 @@
 
 namespace Database\Seeders;
 
+use App\Models\HeroLanguage;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Hero;
 
-class HeroSeeder extends Seeder
+class HeroLanguageSeeder extends Seeder
 {
-    
+    /**
+     * Run the database seeds.
+     */
     public function run(): void
     {
-        $file = fopen('app/data/csv/heros.csv', 'r');
+        $file = fopen('app/data/csv/herosLanguage.csv', 'r');
         $header = fgetcsv($file);
         $data = [];
         while ($row = fgetcsv($file)) {
@@ -20,13 +22,9 @@ class HeroSeeder extends Seeder
 
         fclose($file);
         
-        $model = new Hero();
+        $model = new HeroLanguage();
         foreach($data as $row) {
             $model->create($row);        
         }
-
-        
     }
-
-
 }

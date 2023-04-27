@@ -1,0 +1,2 @@
+id,firstName,lastName,email,email_verified_at,password,remember_token,created_at,updated_at
+1,Timmy,Ilsbroux,timmy@gmail.com,2022-04-27 10:00:00,123,true,2022-04-27 10:00:00,2022-04-27 10:00:00

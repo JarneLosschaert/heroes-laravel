@@ -2,16 +2,18 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Hero;
 
-class HeroSeeder extends Seeder
+class UserSeeder extends Seeder
 {
-    
+    /**
+     * Run the database seeds.
+     */
     public function run(): void
     {
-        $file = fopen('app/data/csv/heros.csv', 'r');
+        $file = fopen('app/data/csv/users.csv', 'r');
         $header = fgetcsv($file);
         $data = [];
         while ($row = fgetcsv($file)) {
@@ -20,13 +22,9 @@ class HeroSeeder extends Seeder
 
         fclose($file);
         
-        $model = new Hero();
+        $model = new User();
         foreach($data as $row) {
             $model->create($row);        
         }
-
-        
     }
-
-
 }
