@@ -2,6 +2,7 @@
 namespace App\Modules\Heroes\Services;
 
 use App\Models\Hero;
+use App\Models\HeroLanguage;
 use App\Modules\Core\Services\Service;
 use App\Modules\Core\Services\ServiceLanguages;
 use Illuminate\Support\Facades\Validator;
@@ -14,7 +15,6 @@ class HeroService extends ServiceLanguages
         "name" => "required",
         "description" => "required",
         "power-level" => "required|min:1|max:10",
-        "skills" => "",
         "birthday" => "",
         "race" => "",
         "gender" => "",
@@ -71,6 +71,12 @@ class HeroService extends ServiceLanguages
             return ["errors" => $this->getErrors()];
         }
         $hero = $this->_model->create($data);
+        HeroLanguage::create([
+            "hero_id" => $hero->id,
+            "language" => app()->getLocale(),
+            "description" => $data["description"],
+            "race" => $data["race"]
+        ]);
         return $hero;
     }
 
@@ -81,13 +87,27 @@ class HeroService extends ServiceLanguages
             return ["errors" => $this->getErrors()];
         }
         $hero = $this->_model->find($id);
-        $hero = $hero->update($data);
-        return $hero;
+        $heroBool = $hero->update($data);
+        $heroLanguage = HeroLanguage::where("hero_id", $id)
+            ->where("language", app()->getLocale())
+            ->first();
+        if ($heroLanguage != null) {
+            $heroLanguage->update($data);
+        } else {
+            HeroLanguage::create([
+                "hero_id" => $hero->id,
+                "language" => app()->getLocale(),
+                "description" => $data["description"],
+                "race" => $data["race"]
+            ]);
+        }
+        return $heroBool;
     }
 
     public function delete($id)
     {
         $hero = $this->_model->find($id);
+        HeroLanguage::where("hero_id", $id)->delete();
         $hero->delete();
     }
 }

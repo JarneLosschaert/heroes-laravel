@@ -10,7 +10,14 @@ class HeroLanguage extends Model
     use HasFactory;
     protected $table = "heroes_language";
 
-    public function country() {
+    protected $fillable = [
+        'hero_id',
+        'language',
+        'description',
+        'race',
+    ];
+
+    public function hero() {
         return $this->belongsTo(Hero::class, "hero_id", "id");
     }
 }

@@ -11,19 +11,12 @@ class Hero extends Model
 
     protected $fillable = [
         'name',
-        'description',
         'power-level',
-        'skills',
         'birthday',
-        'race',
-        'image'
+        'image',
     ];
 
-    protected $casts = [
-        'skills' => 'array'
-    ];
-
-    public function translations(){
+    public function translations() {
         return $this->hasMany(HeroLanguage::class, "hero_id", "id");
     }
 }
