@@ -18,18 +18,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('favoriteHeroes');
             $table->rememberToken();
             $table->timestamps();
-        });
-
-        Schema::create('users_language', function (Blueprint $table) {
-            $table->id();
-
-            $table->integer("user_id");
-            $table->string("language");
-
-            $table->string('favoriteHeroes');
         });
     }
 
