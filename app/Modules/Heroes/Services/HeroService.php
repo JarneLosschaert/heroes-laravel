@@ -87,7 +87,7 @@ class HeroService extends ServiceLanguages
             return ["errors" => $this->getErrors()];
         }
         $hero = $this->_model->find($id);
-        $heroBool = $hero->update($data);
+        $hero->update($data);
         $heroLanguage = HeroLanguage::where("hero_id", $id)
             ->where("language", app()->getLocale())
             ->first();
@@ -101,7 +101,7 @@ class HeroService extends ServiceLanguages
                 "race" => $data["race"]
             ]);
         }
-        return $heroBool;
+        return $hero;
     }
 
     public function delete($id)
