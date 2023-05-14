@@ -53,15 +53,19 @@ class HeroService extends ServiceLanguages
         return $data;
     }
 
-    public function find($id)
+    public function find($language, $id)
     {
-        $data = $this->_model
-            ->with("translations")
+        $data = $this->_model->with(
+            ["translations" => function ($query) use ($language) {
+                if ($language)
+                    return $query->where("language", $language);
+            }]
+        )
             ->find($id);
 
-        $data = $this->presentFindWithTranslations($data->toArray());
+        $data = $this->presentDetailWithTranslations($data->toArray());
 
-        return ["data" => $data];
+        return $data;
     }
 
     public function create($data)

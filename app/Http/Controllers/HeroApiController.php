@@ -31,9 +31,11 @@ class HeroApiController extends Controller
         return $this->_service->list($language, $pages);
     }
 
-    public function find($id)
+    public function find($id, Request $request)
     {
-        $data = $this->_service->find($id);
+        $language = $request->get("language", app()->getLocale());
+        $data = $this->_service->find($language, $id);
+
         return ["data" => $data];
     }
 
