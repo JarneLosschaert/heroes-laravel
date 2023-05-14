@@ -18,14 +18,14 @@ class HeroApiController extends Controller
 
     public function all(Request $request)
     {
-        $pages = $request->get("pages", 10);
+        $pages = $request->get("pages", 8);
 
         return $this->_service->all($pages);
     }
 
     public function list(Request $request){
         
-        $pages = $request->get("pages", 10);
+        $pages = $request->get("pages", 8);
         $language = $request->get("language", app()->getLocale());
     
         return $this->_service->list($language, $pages);
