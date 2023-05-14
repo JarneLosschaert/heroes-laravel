@@ -63,12 +63,7 @@ abstract class ServiceLanguages extends Service
     {
         if (!isset($data["translations"]))
             return $data;
-
-        $translations = [];
-        foreach ($data["translations"] as  $translation) {
-            $translations[$translation["language"]] = $translation;
-        }
-        $data["translations"] = $translations;
+        $data["translations"] = $this->presentDetailWithTranslations($data);
 
         return $data;
     }

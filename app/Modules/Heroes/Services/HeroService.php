@@ -62,8 +62,7 @@ class HeroService extends ServiceLanguages
             }]
         )
             ->find($id);
-
-        $data = $this->presentDetailWithTranslations($data->toArray());
+        $data = $this->presentFindWithTranslations($data->toArray());
 
         return $data;
     }
