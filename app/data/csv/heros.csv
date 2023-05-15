@@ -1,13 +1,25 @@
 id,name,power-level,birthday,image,created_at,updated_at
-1,Superman,100,1980-07-01,superman.png,2022-04-27 10:00:00,2022-04-27 10:00:00
-2,Batman,95,1978-05-05,batman.png,2022-04-27 10:00:00,2022-04-27 10:00:00
-3,Wonder Woman,90,1985-10-21,wonderwoman.png,2022-04-27 10:00:00,2022-04-27 10:00:00
-4,Spider-man,97,1985-10-21,spiderman.png,2022-04-27 10:00:00,2022-04-27 10:00:00
-5,Aquaman,89,1985-10-21,aquaman.png,2022-04-27 10:00:00,2022-04-27 10:00:00
-6,Wolverine,93,1985-10-21,wolverine.png,2022-04-27 10:00:00,2022-04-27 10:00:00
-7,Red tornado,80,1985-10-21,redtornado.png,2022-04-27 10:00:00,2022-04-27 10:00:00
-8,Doctor Strange,99,1985-10-21,doctorstrange.png,2022-04-27 10:00:00,2022-04-27 10:00:00
-9,Doctor Fate,99,1985-10-21,doctorfate.png,2022-04-27 10:00:00,2022-04-27 10:00:00
-10,Groot,78,1985-10-21,groot.png,2022-04-27 10:00:00,2022-04-27 10:00:00
-11,Supergirl,100,1985-10-21,Supergirl.png,2022-04-27 10:00:00,2022-04-27 10:00:00
-12,Black Widow,70,1985-10-21,blackwidow.png,2022-04-27 10:00:00,2022-04-27 10:00:00
+1,Superman,100,1980-07-01,https://comicvine.gamespot.com/a/uploads/scale_medium/12/124259/8624941-ezgif-1-acf5affa1f.jpg,2022-04-27 10:00:00,2022-04-27 10:00:00
+2,Batman,95,1978-05-05,https://i.pinimg.com/originals/4e/ce/1b/4ece1b28f3a4e042a3e6ca5c991e2199.png,2022-04-27 10:00:00,2022-04-27 10:00:00
+3,Wonder Woman,90,1985-10-21,https://www.gannett-cdn.com/-mm-/afd5ee850218d82a9800548997fd0607075a3cbe/c=23-315-2004-2965/local/-/media/USATODAY/USATODAY/2014/06/30/1404161899000-WONDER-WOMAN-36-COMICS-JY-665--65511024.JPG,2022-04-27 10:00:00,2022-04-27 10:00:00
+4,Spider-man,97,1993-08-27,https://upload.wikimedia.org/wikipedia/en/2/21/Web_of_Spider-Man_Vol_1_129-1.png,2022-04-27 10:00:00,2022-04-27 10:00:00
+5,Aquaman,89,1986-01-26,https://static.wikia.nocookie.net/characterprofile/images/9/95/4224387-2507835082-276312.jpeg/revision/latest/scale-to-width-down/1200?cb=20160925191158,2022-04-27 10:00:00,2022-04-27 10:00:00
+6,Wolverine,92,1832-10-12,https://th.bing.com/th/id/R.0211f93d31faf67c4040bf27ec0c88c6?rik=boaXIG3KEpGXww&pid=ImgRaw&r=0,2022-04-27 10:00:00,2022-04-27 10:00:00
+7,Red tornado,80,1986-05-22,https://i.pinimg.com/originals/17/7b/54/177b54b6ff2e41257b675be45cbac30f.jpg,2022-04-27 10:00:00,2022-04-27 10:00:00
+8,Doctor Strange,99,1930-11-08,https://i.pinimg.com/originals/3a/10/2e/3a102e7bac7fcef12483cd03f5647830.jpg,2022-04-27 10:00:00,2022-04-27 10:00:00
+9,Doctor Fate,99,1940-05-17,https://i.pinimg.com/736x/d3/27/52/d32752e6a6a4988a67fc8d329a995aed.jpg,2022-04-27 10:00:00,2022-04-27 10:00:00
+10,Groot,78,1925-04-31,https://th.bing.com/th/id/R.74e5e291164ce50a255ac1b23c74e50f?rik=hBiFtnzKAVTSrA&pid=ImgRaw&r=0,2022-04-27 10:00:00,2022-04-27 10:00:00
+11,Supergirl,100,1959-09-22,https://th.bing.com/th/id/OIP.YdBlcED2uRvsRHY33zAo7AHaLa?pid=ImgDet&rs=1,2022-04-27 10:00:00,2022-04-27 10:00:00
+12,Black Widow,70,1984-12-03,https://i.pinimg.com/originals/e7/cf/e9/e7cfe91a7e72d996b38fa2d6ddede4cb.jpg,2022-04-27 10:00:00,2022-04-27 10:00:00
+13,Star-Lord,60,1980-07-01,https://th.bing.com/th/id/R.d513a7afc12d7d88b1383155ff52e1d8?rik=v6y%2fpkGFbI1qDQ&pid=ImgRaw&r=0,2022-04-27 10:00:00,2022-04-27 10:00:00
+14,Deadpool,82,1973-11-22,https://th.bing.com/th/id/OIP.XJ8a1h9GXIu7eImZpughLAHaK9?pid=ImgDet&rs=1,2022-04-27 10:00:00,2022-04-27 10:00:00
+15,Raven,91,1980-10-14,https://vignette.wikia.nocookie.net/heroes-fr/images/5/5a/Raven_Dc_Comics.jpg/revision/latest?cb=20201015100259&path-prefix=fr,2022-04-27 10:00:00,2022-04-27 10:00:00
+16,The Huntress,58,1957-06-25,https://th.bing.com/th/id/R.d50638a5abe53243b01f367cf636e7bf?rik=DtNmtuGviOGuhQ&pid=ImgRaw&r=0,2022-04-27 10:00:00,2022-04-27 10:00:00
+17,Gamora,71,1975-03-16,https://i.pinimg.com/736x/6a/0d/b6/6a0db6a028609e02e19e2844b15a220f.jpg,2022-04-27 10:00:00,2022-04-27 10:00:00
+18,Maria Hill,54,1865-02-15,https://th.bing.com/th/id/OIP.v_OhpvdkipoEJVoadAjLhwDIE3?pid=ImgDet&rs=1,2022-04-27 10:00:00,2022-04-27 10:00:00
+19,Nightwing,74,1974-09-06,https://i.pinimg.com/originals/a7/8f/9a/a78f9ac6183b62038b6e779051c92978.jpg,2022-04-27 10:00:00,2022-04-27 10:00:00
+20,Domino,75,1980-11-19,https://i.pinimg.com/originals/b8/15/14/b81514767597be8c65f4569cafdf4c74.jpg,2022-04-27 10:00:00,2022-04-27 10:00:00
+21,Spider-woman,84,1944-07-27,https://th.bing.com/th/id/R.f0e0a05ed351708799b75cd2d0c62630?rik=H1kSUWS6RD%2f2Bg&riu=http%3a%2f%2fmedia-cache-ec0.pinimg.com%2f736x%2f65%2f49%2f2c%2f65492c37a028b3aff90a2a2ca4952110.jpg&ehk=DN0lGnKXm4PMcHJ8JN7jM9n9cX0MQditX1YXAlUba48%3d&risl=&pid=ImgRaw&r=0,2022-04-27 10:00:00,2022-04-27 10:00:00
+22,Doctor Voodoo,93,1950-02-31,https://th.bing.com/th/id/OIP.CX0YVuJQ2WRj2JlTvFgDfAHaJ4?pid=ImgDet&rs=1,2022-04-27 10:00:00,2022-04-27 10:00:00
+23,Cyborg,100,1980-10-26,https://i.pinimg.com/736x/b0/12/4f/b0124f0ded4b7a2af3037565ecc15845--cyborgs-dawn-of-justice.jpg,2022-04-27 10:00:00,2022-04-27 10:00:00
+24,Hellboy,70,1574-10-05,https://i.pinimg.com/originals/c4/03/0a/c4030a6e416854e6ada605fee0c9ee96.jpg,2022-04-27 10:00:00,2022-04-27 10:00:00
