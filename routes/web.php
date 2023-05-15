@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HeroApiController;
 use App\Http\Controllers\UserApiController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Routing\RouteAction;
 use Illuminate\Support\Facades\Route;
 
@@ -33,4 +34,6 @@ Route::get('/users/{id}', [UserApiController::class, 'find']);
 Route::post('/users', [UserApiController::class, 'create']);
 Route::patch('/users/{id}', [UserApiController::class, 'update']);
 Route::delete('/users/{id}', [UserApiController::class, 'delete']);
+Route::post('/register', [AuthController::class, "register"]);
+Route::post('/login', [AuthController::class, 'login']);
 
