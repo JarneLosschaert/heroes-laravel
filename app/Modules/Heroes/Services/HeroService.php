@@ -14,7 +14,7 @@ class HeroService extends ServiceLanguages
         "id" => "",
         "name" => "required",
         "description" => "required",
-        "power-level" => "required|min:1|max:10",
+        "power-level" => "required|min:1|max:100",
         "birthday" => "",
         "race" => "",
         "gender" => "",

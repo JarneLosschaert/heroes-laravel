@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HeroApiController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::middleware('auth:api')->group(function() {
+    Route::post("/posts", [HeroApiController::class, "create"]);
+});
+
+
 Route::get('/heroes', [HeroApiController::class, 'all']);
 Route::get('/heroes/list', [HeroApiController::class, 'list']);
 Route::get('/heroes/{id}', [HeroApiController::class, 'find']);
@@ -32,3 +38,5 @@ Route::get('/users/{id}', [UserApiController::class, 'find']);
 Route::post('/users', [UserApiController::class, 'create']);
 Route::patch('/users/{id}', [UserApiController::class, 'update']);
 Route::delete('/users/{id}', [UserApiController::class, 'delete']);
+Route::post('/register', [AuthController::class, "register"]);
+Route::post('/login', [AuthController::class, 'login']);

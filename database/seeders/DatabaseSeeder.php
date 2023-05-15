@@ -14,8 +14,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             HeroSeeder::class,
-            HeroLanguageSeeder::class,
-            UserSeeder::class
+            HeroLanguageSeeder::class
         ]);
 
     }
