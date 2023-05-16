@@ -21,14 +21,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:api')->group(function() {
-    Route::post("/posts", [HeroApiController::class, "create"]);
+    Route::post("/heroes", [HeroApiController::class, "create"]);
 });
 
 
 Route::get('/heroes', [HeroApiController::class, 'all']);
 Route::get('/heroes/list', [HeroApiController::class, 'list']);
 Route::get('/heroes/{id}', [HeroApiController::class, 'find']);
-Route::post('/heroes', [HeroApiController::class, 'create']);
 Route::put('/heroes/{id}', [HeroApiController::class, 'update']);
 Route::delete('/heroes/{id}', [HeroApiController::class, 'delete']);
 
