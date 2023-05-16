@@ -53,13 +53,29 @@ abstract class ServiceLanguages extends Service
     // -- PRESENTERS --> REFACTOR --
     protected function presentAllWithTranslations($data)
     {
+        $res = [];
         foreach ($data["data"] as $record) {
-            $data["data"] = $this->presentFindWithTranslations($record);
+            $res[] = $this->presentFindWithTranslations($record);
         }
-        return $data;
+        return $res;
     }
 
     protected function presentFindWithTranslations($data)
+    {
+        if (!isset($data["translations"]))
+            return $data;
+
+        $translations = [];
+        foreach ($data["translations"] as  $translation) {
+            $translations[$translation["language"]] = $translation;
+        }
+        $data["translations"] = $translations;
+
+        return $data;
+    }
+
+
+    protected function presentFindWithTranslation($data)
     {
         if (!isset($data["translations"]))
             return $data;

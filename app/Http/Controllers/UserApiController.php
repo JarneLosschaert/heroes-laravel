@@ -14,44 +14,19 @@ class UserApiController extends Controller
         $this->_service = $service;
     }
 
-    public function all(Request $request){  
-        
-        $pages = $request->get("pages", 10);
-        return $this->_service->all($pages);
+    public function getToken($request) {
+        $token = $request->header('Authorization');
+        return str_replace('Bearer ', '', $token);
     }
 
-    public function find($id)
+    public function update(Request $request)
     {
-        $data = $this->_service->find($id);
-        return ["data" => $data];
-    }
-
-    public function create(Request $request)
-    {
+        $token = $this->getToken($request);
         $data = $request->all();
-        $user = $this->_service->create($data);
+        $this->_service->update($token, $data);
         if ($this->_service->hasErrors()) {
             return ["errors" => $this->_service->getErrors()];
         }
-        return ["data" => $user];
-    }
-
-    public function update(Request $request, $id)
-    {
-        $data = $request->all();
-        $user = $this->_service->update($id, $data);
-        if ($this->_service->hasErrors()) {
-            return ["errors" => $this->_service->getErrors()];
-        }
-        return ["data" => $user];
-    }
-
-    public function delete($id)
-    {
-        $user = $this->_service->delete($id);
-        if ($this->_service->hasErrors()) {
-            return ["errors" => $this->_service->getErrors()];
-        }
-        return ["data" => $user];
+        return response()->noContent();
     }
 }

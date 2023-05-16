@@ -3,9 +3,11 @@ namespace App\Modules\Users\Services;
 
 use App\Models\User;
 use App\Modules\Core\Services\Service;
+use App\Modules\Heroes\Services\HeroService;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserService extends Service
 {
@@ -19,43 +21,36 @@ class UserService extends Service
         parent::__construct($model);
     }
 
-    public function all()
-    {
-        return $this->_model->all();
+    public function findId($token) {
+        $user = Auth::setToken($token)->user();
+        if ($user) {
+            return $user["id"];
+        } else {
+            return ["errors" => $this->getErrors()];
+        }
     }
 
-    public function find($id)
+    public function update($token, $data)
     {
-        return ["data" => $this->_model->find($id)];
-    }
+        $rules = [
+            'favoriteHeroes' => 'required'
+        ];
 
-    public function create($data)
-    {
-        $this->validate($data);
+        $this->validate($data, $rules);
         if ($this->hasErrors()) {
             return ["errors" => $this->getErrors()];
         }
-        $data['password'] = Hash::make($data['password']);
-        $user = $this->_model->create($data);
-        return $user;
-    }
 
-    public function update($id, $data)
-    {
-        $this->validate($data);
-        if ($this->hasErrors()) {
-            return ["errors" => $this->getErrors()];
-        }
+        $id = $this->findId($token);
         $user = $this->_model->find($id);
         $user = $user->update($data);
         return $user;
     }
 
-    public function delete($id)
-    {
+    public function getFavorites($token) {
+        $id = $this->findId($token);
         $user = $this->_model->find($id);
-        $user->delete();
-        return $user;
+        return $user["favoriteHeroes"];
     }
 
     public function registerUser($data) {

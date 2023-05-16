@@ -24,11 +24,12 @@ class AuthController extends Controller
         }
         return response()->noContent();
     }
+
     public function login(Request $request)
     {
         $token = $this->_service->login($request);
         if (!$token) {
-            return response()->json(['error' => 'Invalid credentials.'], 401);
+            return Response::json(['error' => 'Invalid credentials.'], 401);
         }
         return response([
             "status" => "success",
@@ -38,6 +39,5 @@ class AuthController extends Controller
                 'type' => "bearer"
             ]
         ], 200);
-        
     }
 }

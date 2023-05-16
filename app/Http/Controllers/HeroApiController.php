@@ -16,6 +16,12 @@ class HeroApiController extends Controller
         $this->_service = $service;
     }
 
+    public function getToken($request) {
+        $token = $request->header('Authorization');
+
+        return str_replace('Bearer ', '', $token);
+    }
+
     public function all(Request $request)
     {
         $pages = $request->get("pages", 8);
@@ -23,12 +29,23 @@ class HeroApiController extends Controller
         return $this->_service->all($pages);
     }
 
+    public function favorites(Request $request)
+    {
+        $pages = $request->get("pages", 8);
+        $token = $this->getToken($request);
+        $data = $this->_service->favorites($token, $pages);
+
+        return ["data" => $data];
+    }
+
     public function list(Request $request){
         
         $pages = $request->get("pages", 8);
         $language = $request->get("language", app()->getLocale());
-    
-        return $this->_service->list($language, $pages);
+        $filter = $request->get("filter", null);
+        $data = $this->_service->list($language, $pages, $filter);
+
+        return ["data" => $data];
     }
 
     public function find($id, Request $request)
@@ -42,23 +59,23 @@ class HeroApiController extends Controller
     public function create(Request $request)
     {
         $data = $request->all();
-        $hero = $this->_service->create($data);
-        
+        $this->_service->create($data);
         if ($this->_service->hasErrors()) {
             return ["errors" => $this->_service->getErrors()];
         }
         
-        return ["data" => $hero];
+        return response()->noContent();
     }
 
     public function update(Request $request, $id)
     {
         $data = $request->all();
-        $hero = $this->_service->update($id, $data);
+        $this->_service->update($id, $data);
         if ($this->_service->hasErrors()) {
             return ["errors" => $this->_service->getErrors()];
         }
-        return ["data" => $hero];
+
+        return response()->noContent();
     }
 
     public function delete($id)
@@ -67,6 +84,7 @@ class HeroApiController extends Controller
         if ($this->_service->hasErrors()) {
             return ["errors" => $this->_service->getErrors()];
         }
-        return ["data" => "Hero deleted"];
+
+        return response()->noContent();
     }
 }

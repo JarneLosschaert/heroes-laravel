@@ -5,20 +5,24 @@ use App\Models\Hero;
 use App\Models\HeroLanguage;
 use App\Modules\Core\Services\Service;
 use App\Modules\Core\Services\ServiceLanguages;
+use App\Modules\Users\Services\UserService;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\MessageBag;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+
+
 
 class HeroService extends ServiceLanguages
 {
     protected $_rules = [
-        "id" => "",
         "name" => "required",
         "description" => "required",
         "power-level" => "required|min:1|max:100",
-        "birthday" => "",
-        "race" => "",
-        "gender" => "",
-        "image" => ""
+        "birthday" => "required",
+        "race" => "required",
+        "gender" => "required",
+        "image" => "required"
     ];
 
     protected $_rulesTranslations = [
@@ -30,7 +34,16 @@ class HeroService extends ServiceLanguages
         parent::__construct($model);
     }
 
-    public function all($pages = 10)
+    public function findId($token) {
+        $user = Auth::setToken($token)->user();
+        if ($user) {
+            return $user["id"];
+        } else {
+            return ["errors" => $this->getErrors()];
+        }
+    }
+
+    public function all($pages = 8)
     {
         $data = $this->_model
             ->with("translations")
@@ -39,17 +52,45 @@ class HeroService extends ServiceLanguages
         return $this->presentAllWithTranslations($data->toArray());
     }
 
-    public function list($language, $pages = 10)
+    public function favorites($token, $pages = 8)
+    {
+        $id = $this->findId($token);
+        $user = User::find($id);
+        $favorites = $user["favoriteHeroes"];
+        if (!$favorites) {
+            $favorites = [];
+        }
+        $data = $this->_model
+            ->whereIn("id", $favorites)
+            ->with("translations")
+            ->paginate($pages);
+        
+        return $this->presentAllWithTranslations($data->toArray());
+    }
+
+    public function list($language, $pages = 8, $filter = null)
     {
         $data =  $this->_model->with(
             ["translations" => function ($query) use ($language) {
                 if ($language)
                     return $query->where("language", $language);
             }]
-        )
+        );
+
+        if ($filter != null) {
+            $name = $filter["name"];
+            $minPowerLevel = $filter["minPowerLevel"];
+            $maxPowerLevel = $filter["maxPowerLevel"];
+            $data = $data->where("name", "like", "%$name%")
+                ->where("power-level", ">=", $minPowerLevel)
+                ->where("power-level", "<=", $maxPowerLevel);
+        };
+
+        $data = $data
             ->paginate($pages)
             ->withQueryString();
         $data = $this->presentListWithTranslations($data->toArray());
+
         return $data;
     }
 
@@ -62,7 +103,7 @@ class HeroService extends ServiceLanguages
             }]
         )
             ->find($id);
-        $data = $this->presentFindWithTranslations($data->toArray());
+        $data = $this->presentFindWithTranslation($data->toArray());
 
         return $data;
     }
@@ -76,7 +117,13 @@ class HeroService extends ServiceLanguages
         $hero = $this->_model->create($data);
         HeroLanguage::create([
             "hero_id" => $hero->id,
-            "language" => app()->getLocale(),
+            "language" => "en",
+            "description" => $data["description"],
+            "race" => $data["race"]
+        ]);
+        HeroLanguage::create([
+            "hero_id" => $hero->id,
+            "language" => "nl",
             "description" => $data["description"],
             "race" => $data["race"]
         ]);

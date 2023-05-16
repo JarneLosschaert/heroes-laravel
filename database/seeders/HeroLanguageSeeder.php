@@ -13,7 +13,7 @@ class HeroLanguageSeeder extends Seeder
      */
     public function run(): void
     {
-        $file = fopen('app/data/csv/herosLanguage.csv', 'r');
+        $file = fopen('database/seeders/data/herosLanguage.csv', 'r');
         $header = fgetcsv($file);
         $data = [];
         while ($row = fgetcsv($file)) {

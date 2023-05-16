@@ -11,7 +11,7 @@ class HeroSeeder extends Seeder
     
     public function run(): void
     {
-        $file = fopen('app/data/csv/heros.csv', 'r');
+        $file = fopen('database/seeders/data/heros.csv', 'r');
         $header = fgetcsv($file);
         $data = [];
         while ($row = fgetcsv($file)) {
