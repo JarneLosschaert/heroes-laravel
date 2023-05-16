@@ -16,6 +16,5 @@ class DatabaseSeeder extends Seeder
             HeroSeeder::class,
             HeroLanguageSeeder::class
         ]);
-
     }
 }
