@@ -42,8 +42,10 @@ class HeroApiController extends Controller
         
         $pages = $request->get("pages", 8);
         $language = $request->get("language", app()->getLocale());
-        $filter = $request->get("filter", null);
-        $data = $this->_service->list($language, $pages, $filter);
+        $name = $request->get("name", "");
+        $minPowerLevel = $request->get("minPowerLevel", 0);
+        $maxPowerLevel = $request->get("maxPowerLevel", 100);
+        $data = $this->_service->list($language, $pages, $name, $minPowerLevel, $maxPowerLevel);
 
         return ["data" => $data];
     }

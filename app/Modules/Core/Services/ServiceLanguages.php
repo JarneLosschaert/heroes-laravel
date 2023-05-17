@@ -50,7 +50,6 @@ abstract class ServiceLanguages extends Service
         return $this->validateData($data, $this->_rulesTranslations);
     }
 
-    // -- PRESENTERS --> REFACTOR --
     protected function presentAllWithTranslations($data)
     {
         $res = [];

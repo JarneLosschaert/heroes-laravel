@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Modules\Heroes\Services;
 
 use App\Models\Hero;
@@ -21,7 +22,6 @@ class HeroService extends ServiceLanguages
         "power-level" => "required|min:1|max:100",
         "birthday" => "required",
         "race" => "required",
-        "gender" => "required",
         "image" => "required"
     ];
 
@@ -34,7 +34,8 @@ class HeroService extends ServiceLanguages
         parent::__construct($model);
     }
 
-    public function findId($token) {
+    public function findId($token)
+    {
         $user = Auth::setToken($token)->user();
         if ($user) {
             return $user["id"];
@@ -48,7 +49,7 @@ class HeroService extends ServiceLanguages
         $data = $this->_model
             ->with("translations")
             ->paginate($pages);
-        
+
         return $this->presentAllWithTranslations($data->toArray());
     }
 
@@ -64,11 +65,11 @@ class HeroService extends ServiceLanguages
             ->whereIn("id", $favorites)
             ->with("translations")
             ->paginate($pages);
-        
+
         return $this->presentAllWithTranslations($data->toArray());
     }
 
-    public function list($language, $pages = 8, $filter = null)
+    public function list($language, $pages = 8, $name = "", $minPowerLevel = 0, $maxPowerLevel = 100)
     {
         $data =  $this->_model->with(
             ["translations" => function ($query) use ($language) {
@@ -77,14 +78,9 @@ class HeroService extends ServiceLanguages
             }]
         );
 
-        if ($filter != null) {
-            $name = $filter["name"];
-            $minPowerLevel = $filter["minPowerLevel"];
-            $maxPowerLevel = $filter["maxPowerLevel"];
-            $data = $data->where("name", "like", "%$name%")
-                ->where("power-level", ">=", $minPowerLevel)
-                ->where("power-level", "<=", $maxPowerLevel);
-        };
+        $data = $data->where("name", "like", "%$name%")
+            ->where("power-level", ">=", $minPowerLevel)
+            ->where("power-level", "<=", $maxPowerLevel);
 
         $data = $data
             ->paginate($pages)

@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware('auth:api')->group(function() {
     Route::post("/heroes", [HeroApiController::class, "create"]);
-    Route::get('/favorites', [HeroApiController::class, 'favorites']);
+    Route::get('/heroes/favorites', [HeroApiController::class, 'favorites']);
     Route::patch('/user', [UserApiController::class, 'update']);
 });
 
