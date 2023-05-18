@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HeroApiController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

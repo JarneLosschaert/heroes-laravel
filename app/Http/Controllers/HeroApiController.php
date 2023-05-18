@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Modules\Heroes\Services\HeroService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Log;
 
 class HeroApiController extends Controller
 {
