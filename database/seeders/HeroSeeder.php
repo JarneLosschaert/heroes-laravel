@@ -24,9 +24,5 @@ class HeroSeeder extends Seeder
         foreach($data as $row) {
             $model->create($row);        
         }
-
-        
     }
-
-
 }
